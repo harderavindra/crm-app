@@ -1,8 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { getPaginationRange } from '../utils/pagination';
 
 export const usePagination = (data, itemsPerPage) => {
     const [currentPage, setCurrentPage] = useState(1);
+    useEffect(() => {
+        setCurrentPage(1); // Reset to first page when data changes
+    }, [data]); // Runs whenever `data` updates (filtered/search results)
     const totalPages = Math.ceil(data.length / itemsPerPage);
     const paginatedData = data.slice(
         (currentPage - 1) * itemsPerPage,

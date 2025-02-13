@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import PageTitle from '../components/layout/PageTitle'
-import { Edit, Trash, Plus } from "lucide-react";
+import { Edit, Trash, Plus, Search, RefreshCcwDot } from "lucide-react";
 import Breadcrumbs from '../components/layout/Breadcrumbs';
 import Th from '../components/common/Th';
 import Td from '../components/common/Td';
@@ -9,6 +9,8 @@ import Pagination from '../components/Pagination';
 import StatusBadge from '../components/StatusBadge';
 import CustomCheckbox from '../components/common/CustomCheckbox';
 import { usePagination } from '../hooks/usePagination';
+import { useRowSelection } from '../hooks/useRowSelection';
+import { RefreshCcw } from 'lucide';
 
 const breadcrumbItems = [
     { name: 'Home', path: '/' },
@@ -33,29 +35,55 @@ const statusMapping = {
 };
 const ProjectsPage = () => {
     const [filteredData, setFilteredData] = useState([]);
+    const [loading, setLoading] = useState(false); // Add loading state
+
     const itemsPerPage = 8;
-  
+
     const {
         currentPage,
         totalPages,
         paginatedData,
         paginationRange,
         handlePaginate, // Use handlePaginate from usePagination
-    } = usePagination(data, itemsPerPage);
+    } = usePagination(filteredData, itemsPerPage);
+    const { selectedRows, handleSelectAll, handleRowSelect } = useRowSelection(data);
 
- 
+
     useEffect(() => {
         setFilteredData(data)
     }, [])
 
- 
-    const [selectedRows, setSelectedRows] = useState([]);
-    const handleSelectAll = () => {
-        setSelectedRows(selectedRows.length === data.length ? [] : data.map((row) => row.id));
+    const [query, setQuery] = useState("");
+    const [selectedStage, setSelectedStage] = useState("All");
+    useEffect(() => {
+        setLoading(true); 
+        const timeoutId = setTimeout(() => {
+            handleFilterAndSearch();
+            setLoading(false);
+        }, 500); // Debounce search (wait 500ms before filtering)
+
+        return () => clearTimeout(timeoutId); // Clear timeout on change
+    }, [query, selectedStage]); // Runs whenever query or stage changes
+
+    const handleFilterAndSearch = () => {
+        let filtered = data;
+
+        if (selectedStage !== "All") {
+            filtered = filtered.filter((row) => row.leads === selectedStage);
+        }
+
+        if (query.length > 2) {
+            filtered = filtered.filter((row) =>
+                Object.values(row).some((value) =>
+                    value.toString().toLowerCase().includes(query.toLowerCase())
+                )
+            );
+        }
+
+        setFilteredData(filtered); // Updates displayed results
+        console.log("changed")
     };
-    const handleRowSelect = (rowId) => {
-        setSelectedRows((prev) => (prev.includes(rowId) ? prev.filter((id) => id !== rowId) : [...prev, rowId]));
-    };
+
     const onAction = () => {
         console.log('Clicked')
     }
@@ -64,6 +92,33 @@ const ProjectsPage = () => {
         <div>
             <PageTitle title={'Projects'} actionText='Create New' ActionIcon={Plus} onAction={onAction} />
             <div><Breadcrumbs items={breadcrumbItems} /></div>
+            <div className='flex mt-3 gap-4'>
+                <div className="flex gap-0 mb-4 p-2 border border-gray-400 bg-white rounded-lg relative ">
+                    <select
+                        onChange={(e) => setSelectedStage(e.target.value)}
+                        className="px-2 border-0 rounded w-[100px] focus:outline-0 active:outline-0 focus:bg-gray-100"
+                    >
+                        <option value="All">All</option>
+                        <option value="Not Interested">Not Interested</option>
+                        <option value="Negotiation">Negotiation</option>
+                        <option value="Deal Closed">Deal Closed</option>
+                    </select>
+                    <span className='height-full w-px bg-gray-400 ml-2 mr-2'></span>
+                    <div className='relative pr-8'>
+                        <input
+                            type="text"
+                            placeholder="Search by project name or phone ..."
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            className="border-0 rounded-sm px-2 mr-2 w-64 focus:outline-0 active:outline-0 focus:bg-gray-100"
+                        />
+                        <Search size='20px' className='absolute right-4  top-[2px] text-gray-400' />
+                    </div>
+                    {loading ? (
+    <RefreshCcwDot className="animate-spin text-gray-600" size={24} />
+) :('')}
+                </div>
+            </div>
             <div className="border border-gray-300 rounded-lg overflow-hidden mt-4">
                 <table className='min-w-full bg-white'>
                     <thead>
@@ -76,10 +131,10 @@ const ProjectsPage = () => {
                     </thead>
                     <tbody>
                         {paginatedData.map((row, rowIndex) => (
-                            <tr key={rowIndex}> 
-                            <Td>
-                                <CustomCheckbox onChange={() => handleRowSelect(row.id)} checked={selectedRows.includes(row.id)} />
-                            </Td>
+                            <tr key={rowIndex}>
+                                <Td>
+                                    <CustomCheckbox onChange={() => handleRowSelect(row.id)} checked={selectedRows.includes(row.id)} />
+                                </Td>
 
                                 {columns.map((column) => (
                                     <Td key={column.key}>
