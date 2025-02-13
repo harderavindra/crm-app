@@ -6,7 +6,7 @@ import iconID from '../../assets/icon-idcard.svg'
 import iconBrief from '../../assets/icon-briefcase.svg'
 import iconCalendar from '../../assets/icon-calendar.svg'
 import iconTeam from '../../assets/icon-team.svg'
-import icon2 from '../../assets/icon-idcard.svg'
+import iconInbox from '../../assets/icon-inbox.svg'
 
 const SideNav = () => {
     return (
@@ -19,9 +19,17 @@ const SideNav = () => {
                     <li><NavigationLink icon={iconID} to="/contacts"/></li>
                     <li><NavigationLink icon={iconCalendar} to="/aiagent"/></li>
                     <li><NavigationLink icon={iconTeam} to="/leads"/></li>
-                    <li><NavigationLink icon={icon2} to="/contacts"/></li>
                    
                 </ul>
+                <span className='border-b border-gray-400 h-1 my-5 w-full flex'></span>
+                <ul className='flex flex-col gap-2 min-h-[120px]'>
+                    <li>
+                        <NavigationLink icon={iconInbox} to="/inbox"/> 
+                    </li>
+                   
+                   
+                </ul>
+
             </nav>
     )
 }
