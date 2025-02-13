@@ -10,7 +10,7 @@ const MainLayout = () => {
                 <div className='mb-4'><Logo size={48}/></div>
                 <SideNav />
             </div>
-            <div className="content p-4">
+            <div className="content py-3 px-7 w-full">
                 <Outlet /> {/* Nested routes will be rendered here */}
             </div>
         </div>

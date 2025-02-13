@@ -10,6 +10,7 @@ const SideNav = () => {
                     <li>
                         <NavigationLink icon={icon1} to="/dashboard"/> 
                     </li>
+                    <li><NavigationLink icon={icon2} to="/projects"/></li>
                     <li><NavigationLink icon={icon2} to="/contacts"/></li>
                    
                 </ul>
