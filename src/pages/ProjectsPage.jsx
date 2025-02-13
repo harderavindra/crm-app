@@ -5,10 +5,10 @@ import Breadcrumbs from '../components/layout/Breadcrumbs';
 import Th from '../components/common/Th';
 import Td from '../components/common/Td';
 import data from '../data/projectss-data.json'
-import { getPaginationRange } from '../utils/pagination';
 import Pagination from '../components/Pagination';
 import StatusBadge from '../components/StatusBadge';
 import CustomCheckbox from '../components/common/CustomCheckbox';
+import { usePagination } from '../hooks/usePagination';
 
 const breadcrumbItems = [
     { name: 'Home', path: '/' },
@@ -34,21 +34,21 @@ const statusMapping = {
 const ProjectsPage = () => {
     const [filteredData, setFilteredData] = useState([]);
     const itemsPerPage = 8;
-    const [currentPage, setCurrentPage] = useState(1);
-    const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-    const paginatedData = filteredData.slice(
-        (currentPage - 1) * itemsPerPage,
-        currentPage * itemsPerPage
-    );
+  
+    const {
+        currentPage,
+        totalPages,
+        paginatedData,
+        paginationRange,
+        handlePaginate, // Use handlePaginate from usePagination
+    } = usePagination(data, itemsPerPage);
 
+ 
     useEffect(() => {
         setFilteredData(data)
     }, [])
-    const paginationRange = getPaginationRange(currentPage, totalPages);
 
-    const handlePaginate = (page) => {
-        setCurrentPage(page);
-    };
+ 
     const [selectedRows, setSelectedRows] = useState([]);
     const handleSelectAll = () => {
         setSelectedRows(selectedRows.length === data.length ? [] : data.map((row) => row.id));
@@ -76,7 +76,8 @@ const ProjectsPage = () => {
                     </thead>
                     <tbody>
                         {paginatedData.map((row, rowIndex) => (
-                            <tr> <Td>
+                            <tr key={rowIndex}> 
+                            <Td>
                                 <CustomCheckbox onChange={() => handleRowSelect(row.id)} checked={selectedRows.includes(row.id)} />
                             </Td>
 
