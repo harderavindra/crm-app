@@ -132,9 +132,10 @@ const ContactsPage = () => {
                     </thead>
                     <tbody>
                     {data.map((row, rowIndex) => (
-              <tr> <td className='py-3.5 px-4 border-b border-gray-300 text-center'>
-                <CustomCheckbox onChange={() => handleRowSelect(row.id)} checked={selectedRows.includes(row.id)} />
-              </td>
+              <tr> 
+                 <Td>
+                                    <CustomCheckbox onChange={() => handleRowSelect(row.id)} checked={selectedRows.includes(row.id)} />
+                                </Td>
                 <td className='py-3.5 px-4 border-b border-gray-300'>
                   <div className='flex gap-3'>
                     <Avatar src={row.profile} size={90} />
