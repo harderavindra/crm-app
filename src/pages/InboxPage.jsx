@@ -34,7 +34,7 @@ const InboxPage = () => {
           <div className=' max-w-md flex gap-4 flex-col mt-5'>
             {
               filteredEmails.map((email, index) => (
-                <div className='bg-white rounded-lg flex gap-3 p-3 items-center justify-between' onClick={() => setSelectedEmail(email)}>
+                <div className={`bg-white rounded-lg flex gap-3 p-3 items-center justify-between ${selectedEmail?.email === email.email ? "border border-gray-500" : ""}`} onClick={() => setSelectedEmail(email)}>
                   <div className='flex gap-2'>
                     <Avatar src={email.profile} size={42} />
                     <div >
