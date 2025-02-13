@@ -13,11 +13,11 @@ const AppRouter = () => {
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<DashboardPage />} />
-          <Route path="contacts" element={<ContactsPage />} />
-          <Route path="projects" element={<ProjectsPage />} />
-          <Route path="dashboard" element={<DashboardPage />} />
-          <Route path="aiagent" element={<AiAgentPage />} />
-          <Route path="leads" element={<LeadsPage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          <Route path="/aiagent" element={<AiAgentPage />} />
+          <Route path="/leads" element={<LeadsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
