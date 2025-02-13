@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-     <h1>Welcome to crm-app2</h1>
+     <h1>Welcome to crm-app</h1>
     </>
   )
 }
