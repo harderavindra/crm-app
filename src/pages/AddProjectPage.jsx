@@ -25,7 +25,16 @@ const AddProjectPage = () => {
             projectName: "",
             salesStage: "",
             prices: "",
-        },]
+        },],
+        recruitingProject: {
+            projectName: "",
+            whyIsThisPositionOpen: "",
+            numberOfPositions: "",
+            jobDescription: "",
+            jobDescriptionAttachment: "",
+            durationOfAssignment: "",
+            typeOfPosition: ""
+        }
     });
     const [submittedData, setSubmittedData] = useState(null)
     const handleChange = (e) => {
@@ -42,7 +51,16 @@ const AddProjectPage = () => {
         updatedFields[index][key] = value;
         setFormData({ ...formData, additionalFields: updatedFields });
     };
-
+    const handleRecruitingFieldChange = (e) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            recruitingProject: {
+                ...prev.recruitingProject,
+                [name]: value
+            }
+        }));
+    };
     const handleSubmit = (e) => {
         e.preventDefault();
         setSubmittedData(formData); // Store form data to display JSON
@@ -59,6 +77,15 @@ const AddProjectPage = () => {
             drugTest: "No",
             skills: [],
             additionalFields: [],
+            recruitingProject: {
+                projectName: "",
+                whyIsThisPositionOpen: "",
+                numberOfPositions: "",
+                jobDescription: "",
+                jobDescriptionAttachment: "",
+                durationOfAssignment: "",
+                typeOfPosition: ""
+            }
 
         });
     }
@@ -95,21 +122,21 @@ const AddProjectPage = () => {
                                             label="Project Name"
                                             value={field.projectName}
                                             onChange={(e) => handleAdditionalFieldChange(index, "projectName", e.target.value)}
-                                            className="border px-2 py-1 rounded w-1/2"
+
                                         />
                                         <InputField
                                             type="text"
                                             label='Sales Stage'
                                             value={field.salesStage}
                                             onChange={(e) => handleAdditionalFieldChange(index, "salesStage", e.target.value)}
-                                            className="border px-2 py-1 rounded w-1/2"
+
                                         />
                                         <InputField
                                             type="text"
                                             value={field.prices}
                                             label="Price"
                                             onChange={(e) => handleAdditionalFieldChange(index, "prices", e.target.value)}
-                                            className="border px-2 py-1 rounded w-1/2"
+
                                         />
                                     </div>
                                 ))}
@@ -119,12 +146,39 @@ const AddProjectPage = () => {
                             </button>
                         </div>
                     </div>
+                    <div className='flex gap-4 flex-col'>
+                    <h3 className="text-lg font-semibold">Recruiting Project (Job Description)</h3>
+                        <div className='flex gap-4'>
+                            <InputField label={'Project Name'} name={'projectName'} value={formData.recruitingProject.projectName} onChange={handleRecruitingFieldChange} />
+                            <InputField label={'Why is this Position Open?'} name={'whyIsThisPositionOpen'} value={formData.recruitingProject.whyIsThisPositionOpen} onChange={handleRecruitingFieldChange} />
+                            <InputField label={'# of Positions'} name={'numberOfPositions'} value={formData.recruitingProject.numberOfPositions} onChange={handleRecruitingFieldChange} />
+                        </div>
+                        <div className='flex gap-4 items-end'>
+                            <div className='w-[200px]'>
+                                <InputField className="rounded-lg  w-auto " label={'Job Description'} type='file' name={'jobDescriptionAttachment'} value={formData.recruitingProject.jobDescriptionAttachment} onChange={handleRecruitingFieldChange} />
+                            </div>
+                            {formData.recruitingProject.jobDescriptionAttachment ? (
+                                <div className='flex w-full mb-3' >Selected file: {formData.recruitingProject.jobDescriptionAttachment}</div>
+                            ) : ""}
+
+                        </div>
+                        <div>
+                            <TextArea label={''} name={'jobDescription'} value={formData.recruitingProject.jobDescription} onChange={handleRecruitingFieldChange} />
+                        </div>
+                        <div className='flex gap-4'>
+                            <InputField label={'Duration of Assignment'} name={'durationOfAssignment'} value={formData.recruitingProject.durationOfAssignment} onChange={handleRecruitingFieldChange} />
+                            <InputField label={'Type of Position'} name={'typeOfPosition'} value={formData.recruitingProject.typeOfPosition} onChange={handleRecruitingFieldChange} />
+                        </div>
+                    </div>
+                    <div>
+                    <h3 className="text-lg font-semibold">Candidate Skills Required</h3>
+                    </div>
                     <div className='flex gap-4 justify-end'>
                         <Button variant="outline" size="md" className='mr-auto' >
-                        Cancel
+                            Cancel
                         </Button>
                         <Button variant="outline" type="submit" size="md" >
-                        Save as Draft
+                            Save as Draft
                         </Button>
                         <Button variant="primary" type="submit" size="md" >
                             Create
