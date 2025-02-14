@@ -11,6 +11,7 @@ import CustomCheckbox from '../components/common/CustomCheckbox';
 import { usePagination } from '../hooks/usePagination';
 import { useRowSelection } from '../hooks/useRowSelection';
 import { RefreshCcw } from 'lucide';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const breadcrumbItems = [
     { name: 'Home', path: '/' },
@@ -36,6 +37,7 @@ const statusMapping = {
 const ProjectsPage = () => {
     const [filteredData, setFilteredData] = useState([]);
     const [loading, setLoading] = useState(false); // Add loading state
+    const navigate = useNavigate(); // Correct usage
 
     const itemsPerPage = 8;
 
@@ -85,12 +87,12 @@ const ProjectsPage = () => {
     };
 
     const onAction = () => {
-        console.log('Clicked')
+        navigate('/addProject');
     }
 
     return (
         <div>
-            <PageTitle title={'Projects'} actionText='Create New' ActionIcon={Plus} onAction={onAction} />
+            <PageTitle title={'Projects'} actionText='Add New' ActionIcon={Plus} onAction={onAction} />
             <div><Breadcrumbs items={breadcrumbItems} /></div>
             <div className='flex mt-3 gap-4'>
                 <div className="flex gap-0 mb-4 p-2 border border-gray-400 bg-white rounded-lg relative ">

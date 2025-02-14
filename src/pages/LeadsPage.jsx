@@ -88,7 +88,7 @@ const LeadsPage = () => {
 
     return (
         <div>  
-            <PageTitle title={'Leads'} actionText='Create New' ActionIcon={Plus} onAction={onAction} />
+            <PageTitle title={'Leads'} actionText='' ActionIcon={''} onAction={''} />
             <div><Breadcrumbs items={breadcrumbItems} /></div>
             <div className='flex mt-3 gap-4'>   
                 <div className="flex gap-0 mb-4 p-2 border border-gray-400 bg-white rounded-lg relative ">

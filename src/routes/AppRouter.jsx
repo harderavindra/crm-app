@@ -7,6 +7,7 @@ import ProjectsPage from '../pages/ProjectsPage'
 import AiAgentPage from '../pages/AiAgentPage'
 import LeadsPage from '../pages/LeadsPage'
 import InboxPage from '../pages/InboxPage'
+import AddProjectPage from '../pages/AddProjectPage'
 
 const AppRouter = () => {
   return (
@@ -20,6 +21,7 @@ const AppRouter = () => {
           <Route path="/aiagent" element={<AiAgentPage />} />
           <Route path="/leads" element={<LeadsPage />} />
           <Route path="/inbox" element={<InboxPage />} />
+          <Route path="/addProject" element={<AddProjectPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
