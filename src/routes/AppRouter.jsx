@@ -9,7 +9,7 @@ import LeadsPage from '../pages/LeadsPage'
 import InboxPage from '../pages/InboxPage'
 import AddProjectPage from '../pages/AddProjectPage'
 import PendingApprovalPage from '../pages/PendingApprovalPage'
-import SearchContactPage from '../pages/searchContactPage'
+import SearchContactPage from '../pages/SearchContactPage'
 
 const AppRouter = () => {
   return (
