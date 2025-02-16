@@ -8,8 +8,8 @@ import AiAgentPage from '../pages/AiAgentPage'
 import LeadsPage from '../pages/LeadsPage'
 import InboxPage from '../pages/InboxPage'
 import AddProjectPage from '../pages/AddProjectPage'
-import SearchContactPage from '../pages/searchContactPage'
 import PendingApprovalPage from '../pages/PendingApprovalPage'
+import SearchContactPage from '../pages/searchContactPage'
 
 const AppRouter = () => {
   return (
@@ -24,7 +24,7 @@ const AppRouter = () => {
           <Route path="/leads" element={<LeadsPage />} />
           <Route path="/inbox" element={<InboxPage />} />
           <Route path="/addProject" element={<AddProjectPage />} />
-          <Route path="/searchContact" element={<SearchContactPage />} />
+          <Route path="/searchContact" element={<SearchContactPage/>} />
           <Route path="/pendingApproval" element={<PendingApprovalPage />} />
         </Route>
       </Routes>
