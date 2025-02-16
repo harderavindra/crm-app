@@ -7,6 +7,7 @@ import iconBrief from '../../assets/icon-briefcase.svg'
 import iconCalendar from '../../assets/icon-calendar.svg'
 import iconTeam from '../../assets/icon-team.svg'
 import iconInbox from '../../assets/icon-inbox.svg'
+import iconPendingMail from '../../assets/icon-pending-mail.svg'
 
 const SideNav = () => {
     return (
@@ -25,6 +26,9 @@ const SideNav = () => {
                 <ul className='flex flex-col gap-2 min-h-[120px]'>
                     <li>
                         <NavigationLink icon={iconInbox} to="/inbox"/> 
+                    </li>
+                    <li>
+                        <NavigationLink icon={iconPendingMail} to="/pendingApproval"/> 
                     </li>
                    
                    

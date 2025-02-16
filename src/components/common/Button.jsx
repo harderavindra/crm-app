@@ -23,6 +23,7 @@ const Button = ({
     secondary: "bg-gray-500 text-white hover:bg-gray-600 focus:ring-gray-500",
     danger: "bg-red-500 text-white hover:bg-red-600 focus:ring-red-500",
     outline: "border border-gray-300 text-gray-500 hover:bg-gray-100 focus:ring-gray-300",
+    textOnly: "border-0 border-gray-300 text-gray-500 hover:bg-gray-100 focus:ring-gray-300",
   };
 
   const disabledStyles = disabled
