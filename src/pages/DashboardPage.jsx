@@ -6,13 +6,24 @@ import StatCard from '../components/dashboard/StatCard'
 import OnOffButton from '../components/common/OnOffButton'
 import Avatar from '../components/common/Avatar'
 import dashboardData from '../data/dashboard-data.json' 
+import { useNavigate } from 'react-router-dom'
+import PageTitle from '../components/layout/PageTitle'
+import { Plus } from 'lucide-react'
 
 const Dashboard = () => {
     const keyMetricsData =  dashboardData.keyMetrics;
     const recentSalesData = dashboardData.recentSales;
     const newContactsData = dashboardData.newContacts;
+    const navigate = useNavigate(); // Correct usage
+
+    const onAction = () => {
+        navigate('/addProject');
+    }
+
     return (
         <div>
+                        <PageTitle title={'Dashboard'} actionText='Add New Project' ActionIcon={Plus} onAction={onAction} />
+
             <div className='flex gap-4 flex-row p-5'>
                 {
                     keyMetricsData.map((metric)=>((
@@ -68,13 +79,15 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex gap-10 flex-row p-5'>
+            <div className='flex gap-4 flex-row p-5'>
+            <div className='w-full'>
                 <Card heading={'StackedLineChart'}>
                     <div className='pt-3'>
                         
                         <StackedLineChart />
                     </div>
                 </Card>
+                </div>
                 <div className='w-full flex flex-row gap-4'>
                     <Card heading={'Added New Contacts'}>
                         <div className='flex flex-col gap-3 mt-4 relative '>

@@ -16,8 +16,8 @@ const StackedLineChart = () => {
     <ResponsiveContainer width="100%" height={240}>
       <LineChart data={data}>
         <CartesianGrid strokeDasharray="3 3" />
-        <XAxis dataKey="name" />
-        <YAxis />
+        <XAxis dataKey="name" tick={{ fill: '#A2A29F' }} />
+        <YAxis tick={{ fill: '#A2A29F' }} />
         <Tooltip />
         <Legend />
         <Line type="basic" dataKey="pv" stroke="#32D583"  strokeWidth={2}  dot={<CustomDot />}/>

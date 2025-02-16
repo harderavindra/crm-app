@@ -125,7 +125,8 @@ const ProjectsPage = () => {
                 <table className='min-w-full bg-white'>
                     <thead>
                         <tr>
-                            <Th><CustomCheckbox onChange={handleSelectAll} checked={selectedRows.length === data.length && data.length > 0} /></Th>
+                            <Th></Th>
+                            <Th className='w-2.5 px-1'><CustomCheckbox onChange={handleSelectAll} checked={selectedRows.length === data.length && data.length > 0} /></Th>
                             {columns.map((column) => (
                                 <Th key={column.key}>{column.label}</Th>
                             ))}
@@ -133,13 +134,14 @@ const ProjectsPage = () => {
                     </thead>
                     <tbody>
                         {paginatedData.map((row, rowIndex) => (
-                            <tr key={rowIndex}>
-                                <Td>
+                            <tr key={rowIndex} className='group  bg-white hover:shadow-[0px_4px_7px_rgb(0_0_0_/_13%)] hover:z-10 transition-shadow duration-200 relative'>
+                                <Td className='text-center group-hover:bg-brand-surface/50'>{rowIndex}</Td>
+                                <Td className='w-2.5  px-0 group-hover:bg-brand-surface/50'>
                                     <CustomCheckbox onChange={() => handleRowSelect(row.id)} checked={selectedRows.includes(row.id)} />
                                 </Td>
 
                                 {columns.map((column) => (
-                                    <Td key={column.key}>
+                                    <Td key={column.key} className=' group-hover:bg-brand-surface/50'>
                                         {column.key === "leads" ? (
                                             <StatusBadge
                                                 status={row[column.key]}

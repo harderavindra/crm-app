@@ -27,7 +27,7 @@ const CustomizedXAxisTick = ({ x, y, payload }) => {
             y={index * 12}
             textAnchor="middle"
             fontSize={10}
-            fill="#666"
+            fill="#A2A29F"
           >
             {word}
           </Text>
@@ -56,7 +56,7 @@ const BarChartComponent = () => {
         interval={0}
         pos
       />
-        <YAxis
+        <YAxis tick={{ fill: '#A2A29F' }}
           tickFormatter={(value) => `$${value / 1000}k`} // Format Y-axis labels as $Xk
         />
         <Tooltip

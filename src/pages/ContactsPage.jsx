@@ -132,11 +132,11 @@ const ContactsPage = () => {
                     </thead>
                     <tbody>
                     {data.map((row, rowIndex) => (
-              <tr> 
-                 <Td>
+              <tr  className='group  bg-white hover:shadow-[0px_4px_7px_rgb(0_0_0_/_13%)] hover:z-10 transition-shadow duration-200 relative'> 
+                 <Td className='w-2.5  px-0 group-hover:bg-brand-surface/50'>
                                     <CustomCheckbox onChange={() => handleRowSelect(row.id)} checked={selectedRows.includes(row.id)} />
                                 </Td>
-                <td className='py-3.5 px-4 border-b border-gray-300'>
+                <Td className=' group-hover:bg-brand-surface/50 '>
                   <div className='flex gap-3'>
                     <Avatar src={row.profile} size={90} />
                     <div>
@@ -151,28 +151,28 @@ const ContactsPage = () => {
                     </div>
                   </div>
 
-                </td>
-                <td className='py-3.5 px-4 border-b border-gray-300'>
+                </Td>
+                <Td className=' group-hover:bg-brand-surface/50 '>
                   {row.company}
-                </td>
-                <td className='py-3.5 px-4 border-b border-gray-300'>
+                </Td>
+                <Td className=' group-hover:bg-brand-surface/50 '>
                   {row.experience}
                   <RoleList roles={row.roles} />
-                </td>
-                <td>
+                </Td>
+                <Td className=' group-hover:bg-brand-surface/50 '>
                   {
                     row.education.map((edu, index) => (
                       <p> {edu.field}, {edu.institution}<br /><b>({edu.title})</b><br /><span className='font-normal text-sm italic'>{edu.duration}</span></p>
                     ))
                   }
-                </td>
-                <td>
+                </Td>
+                <Td className=' group-hover:bg-brand-surface/50 '>
                   <StatusBadge
                     status={row.tag}
                     statusType={statusMapping[row.tag] || "neutral"}
                   />
-                </td>
-                <td> <TableActionButton>View</TableActionButton></td>
+                </Td>
+                <Td className=' group-hover:bg-brand-surface/50 '> <TableActionButton>View</TableActionButton></Td>
               </tr>
             ))
 
