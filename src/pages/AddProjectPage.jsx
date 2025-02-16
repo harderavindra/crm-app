@@ -349,7 +349,8 @@ const AddProjectPage = () => {
                                 ))}
                             </div>
                         </div>
-                        <div className='flex gap-4'>
+                        <div className='flex flex-col gap-4'>
+                        <div>
                             <InputField label={'How will these Skills/Technologies be Applied?'} name={'skillsBeApplied'} value={formData.candidateSkills.skillsBeApplied} onChange={handleCandidateSkillsChange} />
                         </div>
                         <div className='flex gap-4'>
@@ -360,6 +361,7 @@ const AddProjectPage = () => {
                         </div>
                         <div className='flex gap-4'>
                             <InputField label={'EVP'} name={'eVP'} value={formData.candidateSkills.eVP} onChange={handleCandidateSkillsChange} />
+                        </div>
                         </div>
                         <div className='flex  gap-4 justify-between mt-4'>
                             <div >

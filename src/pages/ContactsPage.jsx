@@ -14,6 +14,8 @@ import { RefreshCcw } from 'lucide';
 import Avatar from '../components/common/Avatar';
 import RoleList from '../components/RoleList';
 import TableActionButton from '../components/TableActionButton';
+import Button from '../components/common/Button';
+import { useNavigate } from 'react-router-dom';
 
 const breadcrumbItems = [
     { name: 'Home', path: '/' },
@@ -37,6 +39,7 @@ const statusMapping = {
 const ContactsPage = () => {
     const [filteredData, setFilteredData] = useState([]);
     const [loading, setLoading] = useState(false); // Add loading state
+    const navigate = useNavigate(); // Correct usage
 
     const itemsPerPage = 8;
 
@@ -119,6 +122,7 @@ const ContactsPage = () => {
     <RefreshCcwDot className="animate-spin text-gray-600" size={24} />
 ) :('')}
                 </div>
+                <Button onClick={()=>{  navigate('/searchContact');}}>Search Database</Button>
             </div>
             <div className="border border-gray-300 rounded-lg overflow-hidden mt-4">
                 <table className='min-w-full bg-white'>
