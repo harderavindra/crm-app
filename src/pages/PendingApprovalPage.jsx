@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PageTitle from '../components/layout/PageTitle';
 import Breadcrumbs from '../components/layout/Breadcrumbs';
-import { Star, Trash2 } from 'lucide-react';
+import { Plus, Star, Trash2 } from 'lucide-react';
 import Avatar from '../components/common/Avatar'
 import Button from '../components/common/Button';
 import linkedIn from '../assets/linkedin-logo.svg'
@@ -14,7 +14,7 @@ const PendingApprovalPage = () => {
   const [selectedEmail, setSelectedEmail] = useState(null);
   return (
     <div>
-      <PageTitle title={'Pending Approval'} actionText='' ActionIcon={''} onAction={''} />
+      <PageTitle title={'Pending Approval'} actionText='Approve & Schedule All' ActionIcon={Plus} onAction={''} />
       <div><Breadcrumbs items={breadcrumbItems} /></div>
       <p className='text-gray-400 mb-3'>Conversation from all of your connected email accounts.</p>
       <div className='flex w-full '>
