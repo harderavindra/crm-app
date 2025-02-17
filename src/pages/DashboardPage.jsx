@@ -24,7 +24,7 @@ const Dashboard = () => {
         <div>
             <PageTitle title={'Dashboard'} actionText='Add New Project' ActionIcon={Plus} onAction={onAction} />
 
-            <div className='flex gap-4 flex-row p-5'>
+            <div className='flex gap-4 flex-row px-0 py-4'>
                 {
                     keyMetricsData.map((metric) => ((
                         <Card>
@@ -36,7 +36,7 @@ const Dashboard = () => {
 
             </div>
 
-            <div className='flex gap-4 flex-row p-5'>
+            <div className='flex gap-4 flex-row px-0 py-4'>
                 <div className='w-full'>
                     <Card heading={'Top 5 Projects'}>
                         <div >
@@ -79,7 +79,7 @@ const Dashboard = () => {
                     </div>
                 </div>
             </div>
-            <div className='flex gap-4 flex-row p-5'>
+            <div className='flex gap-4 flex-row py-4'>
                 <div className='w-full'>
                     <Card heading={'StackedLineChart'}>
                         <div className='pt-3'>
